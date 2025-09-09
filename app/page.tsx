@@ -21,8 +21,14 @@ export default function Home() {
         </h1>
       </div>
       <div className="p-6 flex justify-center gap-4">
-        <input type="text" placeholder="search" className="px-4 py-2" />
-        <button className="px-5 py-2.5 bg-blue-500 rounded-lg">Search</button>
+        <input
+          type="text"
+          placeholder="Search for a place"
+          className="px-4 py-2 w-72 rounded-md bg-slate-800"
+        />
+        <button className="px-4 py-1 sm:px-5 sm:py-2 bg-blue-500 rounded-lg">
+          Search
+        </button>
       </div>
     </div>
   );
