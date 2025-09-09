@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="bg-[#02012b] w-full h-screen">
+    <div className="bg-[#02012b] w-full h-screen px-8 sm:px-32">
       <nav className="p-6 md:p-8  flex justify-between">
         <div>
           <Image
@@ -29,6 +29,21 @@ export default function Home() {
         <button className="px-5 py-3  bg-blue-500 rounded-lg cursor-pointer hover:bg-blue-600">
           Search
         </button>
+      </div>
+      <div className="p-6">
+        <div>
+          <div>
+            <div className="relative">
+              <img src="bg-today-large.svg" alt="img" width={800} />
+              <div className="absolute inset-0 p-6 flex flex-col sm:flex-row justify-center items-center sm:justify-start ">
+                <span>
+                  <h1 className="text-2xl sm:text-4xl">Berlin,Germany</h1>
+                  <p>Tuesday, Aug 5, 2025</p>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
