@@ -16,17 +16,15 @@ export default function Home() {
         <button>Select</button>
       </nav>
       <div className="text-center p-6">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl">
-          How&apos;s the sky looking today ?
-        </h1>
+        <h1 className="text-7xl">How&apos;s the sky looking today ?</h1>
       </div>
-      <div className="p-6 flex justify-center gap-4">
+      <div className="p-6 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
         <input
           type="text"
           placeholder="Search for a place"
-          className="px-4 py-2 w-72 rounded-md bg-slate-800"
+          className="px-4 py-3 w-full sm:w-[500px] rounded-md bg-slate-800 "
         />
-        <button className="px-4 py-1 sm:px-5 sm:py-2 bg-blue-500 rounded-lg">
+        <button className="px-5 py-3  bg-blue-500 rounded-lg cursor-pointer hover:bg-blue-600">
           Search
         </button>
       </div>
