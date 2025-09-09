@@ -26,14 +26,14 @@ export default function Home() {
           placeholder="Search for a place"
           className="px-4 py-4 w-full sm:w-[600px] rounded-md bg-slate-800 "
         />
-        <button className="px-5 py-3  bg-blue-500 rounded-lg cursor-pointer hover:bg-blue-600">
+        <button className="px-7 py-3  bg-blue-500 rounded-3xl cursor-pointer hover:bg-blue-600">
           Search
         </button>
       </div>
       <div className="py-6 px-2 sm:p-8">
         <div>
-          <div>
-            <div className="relative">
+          <div className="sm:w-[1000px] ">
+            <div className="relative ">
               <img
                 src="bg-today-small.svg"
                 alt="img"
@@ -44,12 +44,17 @@ export default function Home() {
                 src="bg-today-large.svg"
                 alt="img2"
                 className="hidden sm:block"
-                width={900}
+                width={1000}
               />
-              <div className="absolute inset-0 p-6 flex flex-col sm:flex-row justify-center items-center sm:justify-start ">
+              <div className="absolute inset-0 p-6 gap-4 sm:p-12 flex flex-col sm:flex-row  justify-center items-center sm:justify-between ">
                 <span>
-                  <h1 className="text-2xl sm:text-4xl">Berlin,Germany</h1>
-                  <p>Tuesday, Aug 5, 2025</p>
+                  <h1 className="text-3xl sm:text-4xl pb-2">Berlin,Germany</h1>
+                  <p className="text-center sm:text-start">
+                    Tuesday, Aug 5, 2025
+                  </p>
+                </span>
+                <span>
+                  <h1 className="text-8xl italic">68</h1>
                 </span>
               </div>
             </div>
