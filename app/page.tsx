@@ -59,31 +59,34 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="py-8 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
-              <div className=" h-[130px] rounded-2xl bg-[#25253f] px-6 py-4 ">
+            <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
+              <div className=" h-[150px] rounded-2xl bg-[#25253f] px-6 py-4 ">
                 <span>
                   <p className="text-xl text-[#a3a3ac]">Feels like</p>
-                  <p className="text-4xl mt-4">64</p>
+                  <p className="text-4xl mt-8">64</p>
                 </span>
               </div>
-              <div className=" h-[130px]  rounded-2xl bg-[#25253f] px-6 py-4 ">
+              <div className=" h-[150px]  rounded-2xl bg-[#25253f] px-6 py-4 ">
                 <span>
                   <p className="text-xl text-[#a3a3ac]">Humidity</p>
-                  <p className="text-4xl mt-4">46%</p>
+                  <p className="text-4xl mt-8">46%</p>
                 </span>
               </div>
-              <div className=" h-[130px] rounded-2xl bg-[#25253f] px-6 py-4 ">
+              <div className=" h-[150px] rounded-2xl bg-[#25253f] px-6 py-4 ">
                 <span>
                   <p className="text-xl text-[#a3a3ac]">Wind</p>
-                  <p className="text-4xl mt-4">9 mph</p>
+                  <p className="text-4xl mt-8">9 mph</p>
                 </span>
               </div>
-              <div className=" h-[130px] rounded-2xl bg-[#25253f] px-6 py-4 ">
+              <div className=" h-[150px] rounded-2xl bg-[#25253f] px-6 py-4 ">
                 <span>
                   <p className="text-xl text-[#a3a3ac]">Precipitation</p>
-                  <p className="text-4xl mt-4">0 in</p>
+                  <p className="text-4xl mt-8">0 in</p>
                 </span>
               </div>
+            </div>
+            <div>
+              <p className="text-xl sm:text-2xl">Daily Forecast</p>
             </div>
           </div>
         </div>
