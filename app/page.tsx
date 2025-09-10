@@ -53,7 +53,8 @@ export default function Home() {
                     Tuesday, Aug 5, 2025
                   </p>
                 </span>
-                <span>
+                <span className="flex items-center pr-10 sm:pr-0">
+                  <img src="icon-sunny.webp" alt="sunny" width={130} />
                   <h1 className="text-8xl italic">68</h1>
                 </span>
               </div>
