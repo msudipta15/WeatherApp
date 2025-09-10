@@ -34,7 +34,7 @@ export default function Home() {
         </button>
       </div>
       <div className="py-6 px-2 sm:p-8">
-        <div>
+        <div className="sm:flex sm:gap-6 sm:items-stretch">
           <div className="sm:w-[1000px] ">
             <HeroCard />
             <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
@@ -54,6 +54,20 @@ export default function Home() {
               <DayCard />
               <DayCard />
               <DayCard />
+            </div>
+          </div>
+          <div className=" flex-1 h-full bg-[#25253f] p-6 rounded-2xl   ">
+            <div className="flex justify-between mb-8">
+              <p className="text-xl font-bold">Hourly forecast</p>
+              <select name="day" id="">
+                day
+              </select>
+            </div>
+            <div className="flex justify-between p-4 px-6 text-lg my-4 rounded-lg bg-[#2f2f49]">
+              <div>
+                <p>3 PM</p>
+              </div>
+              <div>68</div>
             </div>
           </div>
         </div>
