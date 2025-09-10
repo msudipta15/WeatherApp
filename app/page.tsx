@@ -1,11 +1,12 @@
 import { DayCard } from "@/components/daycards";
 import { HeroCard } from "@/components/herocard";
+import { HourCard } from "@/components/hourcard";
 import { WeatherCard } from "@/components/weathercards";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-32">
+    <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-24">
       <nav className="py-6 px-2 md:p-8  flex justify-between">
         <div>
           <Image
@@ -63,11 +64,14 @@ export default function Home() {
                 day
               </select>
             </div>
-            <div className="flex justify-between p-4 px-6 text-lg my-4 rounded-lg bg-[#2f2f49]">
-              <div>
-                <p>3 PM</p>
-              </div>
-              <div>68</div>
+            <div>
+              <HourCard />
+              <HourCard />
+              <HourCard />
+              <HourCard />
+              <HourCard />
+              <HourCard />
+              <HourCard />
             </div>
           </div>
         </div>
