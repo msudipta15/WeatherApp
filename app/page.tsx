@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="bg-[#02012b] w-full h-screen px-8 sm:px-32">
+    <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-32">
       <nav className="py-6 px-2 md:p-8  flex justify-between">
         <div>
           <Image
@@ -24,7 +24,7 @@ export default function Home() {
         <input
           type="text"
           placeholder="Search for a place"
-          className="px-4 py-4 w-full sm:w-[600px] rounded-md bg-slate-800 "
+          className="px-4 py-4 w-full sm:w-[600px] rounded-md bg-[#25253f] "
         />
         <button className="px-7 py-3  bg-blue-500 rounded-3xl cursor-pointer hover:bg-blue-600">
           Search
@@ -59,10 +59,29 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div>
-              <div className="w-[200px] h-[130px] rounded-2xl bg-slate-800 p-6">
+            <div className="py-8 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
+              <div className=" h-[130px] rounded-2xl bg-[#25253f] px-6 py-4 ">
                 <span>
-                  <p>Feels like</p>
+                  <p className="text-xl text-[#a3a3ac]">Feels like</p>
+                  <p className="text-4xl mt-4">64</p>
+                </span>
+              </div>
+              <div className=" h-[130px]  rounded-2xl bg-[#25253f] px-6 py-4 ">
+                <span>
+                  <p className="text-xl text-[#a3a3ac]">Humidity</p>
+                  <p className="text-4xl mt-4">46%</p>
+                </span>
+              </div>
+              <div className=" h-[130px] rounded-2xl bg-[#25253f] px-6 py-4 ">
+                <span>
+                  <p className="text-xl text-[#a3a3ac]">Wind</p>
+                  <p className="text-4xl mt-4">9 mph</p>
+                </span>
+              </div>
+              <div className=" h-[130px] rounded-2xl bg-[#25253f] px-6 py-4 ">
+                <span>
+                  <p className="text-xl text-[#a3a3ac]">Precipitation</p>
+                  <p className="text-4xl mt-4">0 in</p>
                 </span>
               </div>
             </div>
