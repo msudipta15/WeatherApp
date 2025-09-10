@@ -88,19 +88,17 @@ export default function Home() {
             <div>
               <p className="text-xl sm:text-2xl">Daily Forecast</p>
             </div>
-            <div>
-              <div className=" w-[120px] h-[200px] rounded-2xl bg-[#25253f] px-6 py-4 ">
-                <div className="flex flex-col items-center justify-center ">
-                  <div>
-                    <p className="text-xl text-[#a3a3ac] text-center">Tue</p>
-                    <span>
-                      <img src="icon-rain.webp" alt="rain" />
-                    </span>
-                    <div className="flex justify-between">
-                      <h1>68</h1>
-                      <h1>57</h1>
-                    </div>
-                  </div>
+            <div className="pt-10 pb-16 ">
+              <div className=" w-[120px] h-[200px] rounded-2xl bg-[#25253f] px-6 py-4 flex flex-col justify-between  ">
+                <div>
+                  <p className="text-xl  text-center">Tue</p>
+                </div>
+                <div>
+                  <img src="icon-rain.webp" alt="rain" />
+                </div>
+                <div className="flex justify-between text-lg font-bold">
+                  <p>68</p>
+                  <p className="text-[#a3a3ac]">57</p>
                 </div>
               </div>
             </div>
