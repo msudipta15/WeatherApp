@@ -1,3 +1,5 @@
+import { DayCard } from "@/components/daycards";
+import { WeatherCard } from "@/components/weathercards";
 import Image from "next/image";
 
 export default function Home() {
@@ -60,47 +62,16 @@ export default function Home() {
               </div>
             </div>
             <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
-              <div className=" h-[150px] rounded-2xl bg-[#25253f] px-6 py-4 ">
-                <span>
-                  <p className="text-xl text-[#a3a3ac]">Feels like</p>
-                  <p className="text-4xl mt-8">64</p>
-                </span>
-              </div>
-              <div className=" h-[150px]  rounded-2xl bg-[#25253f] px-6 py-4 ">
-                <span>
-                  <p className="text-xl text-[#a3a3ac]">Humidity</p>
-                  <p className="text-4xl mt-8">46%</p>
-                </span>
-              </div>
-              <div className=" h-[150px] rounded-2xl bg-[#25253f] px-6 py-4 ">
-                <span>
-                  <p className="text-xl text-[#a3a3ac]">Wind</p>
-                  <p className="text-4xl mt-8">9 mph</p>
-                </span>
-              </div>
-              <div className=" h-[150px] rounded-2xl bg-[#25253f] px-6 py-4 ">
-                <span>
-                  <p className="text-xl text-[#a3a3ac]">Precipitation</p>
-                  <p className="text-4xl mt-8">0 in</p>
-                </span>
-              </div>
+              <WeatherCard title={"Feels like"} value={"64"} />
+              <WeatherCard title={"Humidity"} value={"46"} />
+              <WeatherCard title={"Wind"} value={"9 mph"} />
+              <WeatherCard title={"Percipitation"} value={"0 in"} />
             </div>
             <div>
               <p className="text-xl sm:text-2xl">Daily Forecast</p>
             </div>
             <div className="pt-10 pb-16 ">
-              <div className=" w-[120px] h-[200px] rounded-2xl bg-[#25253f] px-6 py-4 flex flex-col justify-between  ">
-                <div>
-                  <p className="text-xl  text-center">Tue</p>
-                </div>
-                <div>
-                  <img src="icon-rain.webp" alt="rain" />
-                </div>
-                <div className="flex justify-between text-lg font-bold">
-                  <p>68</p>
-                  <p className="text-[#a3a3ac]">57</p>
-                </div>
-              </div>
+              <DayCard />
             </div>
           </div>
         </div>
