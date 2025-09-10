@@ -20,7 +20,7 @@ export default function Home() {
           How&apos;s the sky looking today ?
         </h1>
       </div>
-      <div className="py-6 px-2 sm:p-8 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
+      <div className="py-6 px-2 sm:p-8  flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
         <input
           type="text"
           placeholder="Search for a place"
@@ -56,6 +56,13 @@ export default function Home() {
                 <span className="flex items-center pr-10 sm:pr-0">
                   <img src="icon-sunny.webp" alt="sunny" width={130} />
                   <h1 className="text-8xl italic">68</h1>
+                </span>
+              </div>
+            </div>
+            <div>
+              <div className="w-[200px] h-[130px] rounded-2xl bg-slate-800 p-6">
+                <span>
+                  <p>Feels like</p>
                 </span>
               </div>
             </div>
