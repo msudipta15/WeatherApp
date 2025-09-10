@@ -1,4 +1,5 @@
 import { DayCard } from "@/components/daycards";
+import { HeroCard } from "@/components/herocard";
 import { WeatherCard } from "@/components/weathercards";
 import Image from "next/image";
 
@@ -35,32 +36,7 @@ export default function Home() {
       <div className="py-6 px-2 sm:p-8">
         <div>
           <div className="sm:w-[1000px] ">
-            <div className="relative ">
-              <img
-                src="bg-today-small.svg"
-                alt="img"
-                width={900}
-                className="block sm:hidden"
-              />
-              <img
-                src="bg-today-large.svg"
-                alt="img2"
-                className="hidden sm:block"
-                width={1000}
-              />
-              <div className="absolute inset-0 p-6 gap-4 sm:p-12 flex flex-col sm:flex-row  justify-center items-center sm:justify-between ">
-                <span>
-                  <h1 className="text-3xl sm:text-4xl pb-2">Berlin,Germany</h1>
-                  <p className="text-center sm:text-start">
-                    Tuesday, Aug 5, 2025
-                  </p>
-                </span>
-                <span className="flex items-center pr-10 sm:pr-0">
-                  <img src="icon-sunny.webp" alt="sunny" width={130} />
-                  <h1 className="text-8xl italic">68</h1>
-                </span>
-              </div>
-            </div>
+            <HeroCard />
             <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
               <WeatherCard title={"Feels like"} value={"64"} />
               <WeatherCard title={"Humidity"} value={"46"} />
@@ -70,7 +46,13 @@ export default function Home() {
             <div>
               <p className="text-xl sm:text-2xl">Daily Forecast</p>
             </div>
-            <div className="pt-10 pb-16 ">
+            <div className="pt-10 pb-16 grid grid-cols-3 md:grid-cols-7  gap-6">
+              <DayCard />
+              <DayCard />
+              <DayCard />
+              <DayCard />
+              <DayCard />
+              <DayCard />
               <DayCard />
             </div>
           </div>
