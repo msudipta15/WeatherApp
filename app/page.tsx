@@ -88,6 +88,22 @@ export default function Home() {
             <div>
               <p className="text-xl sm:text-2xl">Daily Forecast</p>
             </div>
+            <div>
+              <div className=" w-[120px] h-[200px] rounded-2xl bg-[#25253f] px-6 py-4 ">
+                <div className="flex flex-col items-center justify-center ">
+                  <div>
+                    <p className="text-xl text-[#a3a3ac] text-center">Tue</p>
+                    <span>
+                      <img src="icon-rain.webp" alt="rain" />
+                    </span>
+                    <div className="flex justify-between">
+                      <h1>68</h1>
+                      <h1>57</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
