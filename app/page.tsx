@@ -5,12 +5,12 @@ import { HeroCard } from "@/components/herocard";
 import { HourCard } from "@/components/hourcard";
 import { WeatherCard } from "@/components/weathercards";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [city, setcity] = useState("kolkata");
 
-  async function onsubmit() {
+  async function getinfo() {
     console.log(city);
     try {
       const response = await getweatherdata({
@@ -27,6 +27,11 @@ export default function Home() {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    getinfo();
+  }, []);
+
   return (
     <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-24">
       <nav className="py-6 px-2 md:p-8  flex justify-between">
@@ -51,11 +56,10 @@ export default function Home() {
           type="text"
           placeholder="Search for a place"
           className="px-4 py-4 w-full sm:w-[600px] rounded-md bg-[#25253f] "
-          value={city}
           onChange={(e) => setcity(e.target.value)}
         />
         <button
-          onClick={() => onsubmit()}
+          onClick={() => getinfo()}
           className="px-7 py-3  bg-blue-500 rounded-3xl cursor-pointer hover:bg-blue-600"
         >
           Search
