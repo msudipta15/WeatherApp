@@ -4,5 +4,5 @@ export async function getweatherdata({ city }: { city: string }) {
   );
 
   const data = await result.json();
-  return data;
+  const { latitude, longitude } = data.results[0];
 }
