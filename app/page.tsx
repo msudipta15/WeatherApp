@@ -1,10 +1,27 @@
+"use client";
+import { getweatherdata } from "@/actions/getweatherdata";
 import { DayCard } from "@/components/daycards";
 import { HeroCard } from "@/components/herocard";
 import { HourCard } from "@/components/hourcard";
 import { WeatherCard } from "@/components/weathercards";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
+  const [city, setcity] = useState("kolkata");
+
+  async function onsubmit() {
+    const response = await getweatherdata({
+      city,
+      units: {
+        temperature_unit: "celsius",
+        wind_speed_unit: "kmh",
+        precipitation_unit: "mm",
+      },
+    });
+
+    console.log(response);
+  }
   return (
     <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-24">
       <nav className="py-6 px-2 md:p-8  flex justify-between">
@@ -17,7 +34,7 @@ export default function Home() {
             className="w-40 h-auto sm:w-48 md:w-60"
           />
         </div>
-        <button>Select</button>
+        <button onClick={() => onsubmit()}>Select</button>
       </nav>
       <div className="text-center py-6 px-2 sm:px-8">
         <h1 className="text-7xl sm:text-6xl">
@@ -29,6 +46,8 @@ export default function Home() {
           type="text"
           placeholder="Search for a place"
           className="px-4 py-4 w-full sm:w-[600px] rounded-md bg-[#25253f] "
+          value={city}
+          onChange={(e) => setcity(e.target.value)}
         />
         <button className="px-7 py-3  bg-blue-500 rounded-3xl cursor-pointer hover:bg-blue-600">
           Search
