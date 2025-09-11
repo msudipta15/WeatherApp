@@ -39,7 +39,7 @@ export default function Home() {
             className="w-40 h-auto sm:w-48 md:w-60"
           />
         </div>
-        <button onClick={() => onsubmit()}>Select</button>
+        <button>Select</button>
       </nav>
       <div className="text-center py-6 px-2 sm:px-8">
         <h1 className="text-7xl sm:text-6xl">
@@ -54,7 +54,10 @@ export default function Home() {
           value={city}
           onChange={(e) => setcity(e.target.value)}
         />
-        <button className="px-7 py-3  bg-blue-500 rounded-3xl cursor-pointer hover:bg-blue-600">
+        <button
+          onClick={() => onsubmit()}
+          className="px-7 py-3  bg-blue-500 rounded-3xl cursor-pointer hover:bg-blue-600"
+        >
           Search
         </button>
       </div>
