@@ -11,16 +11,21 @@ export default function Home() {
   const [city, setcity] = useState("kolkata");
 
   async function onsubmit() {
-    const response = await getweatherdata({
-      city,
-      units: {
-        temperature_unit: "celsius",
-        wind_speed_unit: "kmh",
-        precipitation_unit: "mm",
-      },
-    });
+    console.log(city);
+    try {
+      const response = await getweatherdata({
+        city,
+        units: {
+          temperature_unit: "celsius",
+          wind_speed_unit: "kmh",
+          precipitation_unit: "mm",
+        },
+      });
 
-    console.log(response);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-24">
