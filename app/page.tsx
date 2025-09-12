@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [city, setcity] = useState("kolkata");
-  const [weatherdata, setweatherdata] = useState(Object || null);
+  const [weatherdata, setweatherdata] = useState(null);
   const [country, setcountry] = useState("India");
   const [error, seterror] = useState<string | null>(null);
   const [loading, setloading] = useState(false);
@@ -49,7 +49,7 @@ export default function Home() {
     getinfo();
   }, []);
 
-  const dateString = weatherdata.current_weather.time;
+  const dateString = weatherdata.current_weather.time || "";
   const date = new Date(dateString);
   const formatted_date = date.toLocaleDateString("en-US", {
     weekday: "long",
@@ -57,13 +57,13 @@ export default function Home() {
     year: "numeric",
     day: "numeric",
   });
-  const current_temp = weatherdata.current_weather.temperature;
-  const current_time = weatherdata.current_weather.time;
+  const current_temp = weatherdata.current_weather.temperature || "";
+  const current_time = weatherdata.current_weather.time || "";
   let feels_like = null;
-  const index = weatherdata.hourly.time.indexOf(current_time);
+  const index = weatherdata.hourly.time.indexOf(current_time) || "";
 
   if (index !== -1) {
-    feels_like = weatherdata.hourly.apparent_temperature[index];
+    feels_like = weatherdata.hourly.apparent_temperature[index] || "";
   }
 
   return (
@@ -110,7 +110,7 @@ export default function Home() {
               unit="C"
             />
             <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
-              <WeatherCard title={"Feels like"} value={"64"} />
+              <WeatherCard title={"Feels like"} value={feels_like} />
               <WeatherCard title={"Humidity"} value={"46"} />
               <WeatherCard title={"Wind"} value={"9 mph"} />
               <WeatherCard title={"Percipitation"} value={"0 in"} />
