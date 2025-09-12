@@ -2,7 +2,7 @@ interface proptype {
   city: string;
   country: string;
   date: string;
-  temperature: number;
+  temperature: number | string | null;
   unit: string;
 }
 

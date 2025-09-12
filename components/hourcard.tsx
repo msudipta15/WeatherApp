@@ -4,7 +4,7 @@ export function HourCard() {
       <div>
         <p>3 PM</p>
       </div>
-      <div>68</div>
+      <div>68 </div>
     </div>
   );
 }

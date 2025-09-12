@@ -75,7 +75,11 @@ export default function Home() {
     day: "numeric",
   });
 
-  const current_temp = weatherdata?.current_weather.temperature || "";
+  let current_temp = null;
+  const current_temp_float = weatherdata?.current_weather.temperature || "";
+
+  current_temp = current_temp_float ? Math.round(current_temp_float) : null;
+
   const current_date = weatherdata?.current_weather.time || "";
   console.log(current_date);
   const normalized_date = normalizeToHour(current_date);
