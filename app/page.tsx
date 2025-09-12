@@ -69,7 +69,8 @@ export default function Home() {
         <div className="sm:flex sm:gap-6 sm:items-stretch sm:h-[1000px] ">
           <div className="sm:w-[1000px] ">
             <HeroCard
-              location="kolkata"
+              city="Kolkata"
+              country="India"
               temperature={43}
               date="27/09/2025"
               unit="C"
