@@ -68,7 +68,12 @@ export default function Home() {
       <div className="py-6 px-2 sm:p-8">
         <div className="sm:flex sm:gap-6 sm:items-stretch sm:h-[1000px] ">
           <div className="sm:w-[1000px] ">
-            <HeroCard />
+            <HeroCard
+              location="kolkata"
+              temperature={43}
+              date="27/09/2025"
+              unit="C"
+            />
             <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
               <WeatherCard title={"Feels like"} value={"64"} />
               <WeatherCard title={"Humidity"} value={"46"} />

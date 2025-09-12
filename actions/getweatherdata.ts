@@ -22,5 +22,7 @@ export async function getweatherdata({
 
   const weather_data = await weather_response.json();
 
+  console.log(geo_data);
+
   return weather_data;
 }
