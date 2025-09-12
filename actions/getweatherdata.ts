@@ -9,20 +9,37 @@ export async function getweatherdata({
     precipitation_unit: "mm" | "inch";
   };
 }) {
-  const geo_result = await fetch(
-    `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=en`
-  );
+  try {
+    const geo_result = await fetch(
+      `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=en`
+    );
 
-  const geo_data = await geo_result.json();
-  const { latitude, longitude, country } = geo_data.results[0];
+    if (!geo_result.ok) {
+      throw new Error("Error fetching the location data");
+    }
 
-  const weather_response = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,windspeed_10m,weathercode&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode&timezone=auto&temperature_unit=${units.temperature_unit}&windspeed_unit=${units.wind_speed_unit}&precipitation_unit=${units.precipitation_unit}`
-  );
+    const geo_data = await geo_result.json();
 
-  const weather_data = await weather_response.json();
+    if (!geo_data.results || geo_data.results.length === 0) {
+      return { error: true, message: "Location not found !" };
+    }
+    const { latitude, longitude, country } = geo_data.results[0];
 
-  console.log(geo_data);
+    const weather_response = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,windspeed_10m,weathercode&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode&timezone=auto&temperature_unit=${units.temperature_unit}&windspeed_unit=${units.wind_speed_unit}&precipitation_unit=${units.precipitation_unit}`
+    );
 
-  return { weather_data, country };
+    if (!weather_response.ok) {
+      throw new Error("Error fetching the weather info");
+    }
+
+    const weather_data = await weather_response.json();
+
+    console.log(geo_data);
+
+    return { weather_data, country };
+  } catch (error) {
+    console.log(error);
+    return { error: true, message: "Server error !" };
+  }
 }
