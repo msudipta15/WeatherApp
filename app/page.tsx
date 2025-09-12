@@ -138,7 +138,11 @@ export default function Home() {
               unit="C"
             />
             <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
-              <WeatherCard title={"Feels like"} value={feels_like} />
+              <WeatherCard
+                title={"Feels like"}
+                value={feels_like}
+                suffix={"°"}
+              />
               <WeatherCard title={"Humidity"} value={"46"} />
               <WeatherCard title={"Wind"} value={"9 mph"} />
               <WeatherCard title={"Percipitation"} value={"0 in"} />
