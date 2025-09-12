@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [city, setcity] = useState("kolkata");
+  const [weather, setweather] = useState(null);
+  const [country, setcountry] = useState(null);
 
   async function getinfo() {
     console.log(city);
@@ -23,6 +25,8 @@ export default function Home() {
       });
 
       console.log(response);
+      setcountry(response.country);
+      setweather(response.weather_data);
     } catch (error) {
       console.log(error);
     }
