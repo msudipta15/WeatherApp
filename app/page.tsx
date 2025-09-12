@@ -12,8 +12,10 @@ export default function Home() {
   const [weatherdata, setweatherdata] = useState(Object || null);
   const [country, setcountry] = useState("India");
   const [error, seterror] = useState<string | null>(null);
+  const [loading, setloading] = useState(false);
 
   async function getinfo() {
+    setloading(true);
     console.log(city);
     try {
       seterror(null);
@@ -26,12 +28,20 @@ export default function Home() {
         },
       });
 
+      if (response.error) {
+        seterror(response.message);
+        return;
+      }
+
       console.log(response);
       setcountry(response.country);
       setweatherdata(response.weather_data);
     } catch (error) {
       console.log(error);
       seterror("Server error");
+      setweatherdata(null);
+    } finally {
+      setloading(false);
     }
   }
 
@@ -39,8 +49,22 @@ export default function Home() {
     getinfo();
   }, []);
 
-  const date = weatherdata.current_weather.time || "";
-  const current_temp = weatherdata.current_weather.temperature || "";
+  const dateString = weatherdata.current_weather.time;
+  const date = new Date(dateString);
+  const formatted_date = date.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "short",
+    year: "numeric",
+    day: "numeric",
+  });
+  const current_temp = weatherdata.current_weather.temperature;
+  const current_time = weatherdata.current_weather.time;
+  let feels_like = null;
+  const index = weatherdata.hourly.time.indexOf(current_time);
+
+  if (index !== -1) {
+    feels_like = weatherdata.hourly.apparent_temperature[index];
+  }
 
   return (
     <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-24">
@@ -82,7 +106,7 @@ export default function Home() {
               city={city}
               country={country}
               temperature={current_temp}
-              date={date}
+              date={formatted_date}
               unit="C"
             />
             <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
