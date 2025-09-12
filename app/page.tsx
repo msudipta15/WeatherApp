@@ -4,6 +4,7 @@ import { DayCard } from "@/components/daycards";
 import { HeroCard } from "@/components/herocard";
 import { HourCard } from "@/components/hourcard";
 import { WeatherCard } from "@/components/weathercards";
+import { normalizeToHour } from "@/utils/dateutils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -73,15 +74,25 @@ export default function Home() {
     year: "numeric",
     day: "numeric",
   });
+
   const current_temp = weatherdata?.current_weather.temperature || "";
-  const current_time = weatherdata?.current_weather.time || "";
-  let feels_like = null;
-  const index = weatherdata?.hourly.time.indexOf(current_time) || "";
+  const current_date = weatherdata?.current_weather.time || "";
+  console.log(current_date);
+  const normalized_date = normalizeToHour(current_date);
+  const index = weatherdata?.hourly.time.findIndex(
+    (t: string) => normalizeToHour(t).getTime() === normalized_date.getTime()
+  );
+
   console.log(index);
 
-  if (typeof index === "number" && index !== -1) {
-    feels_like = weatherdata?.hourly.apparent_temperature[index] || "";
+  let feels_like = null;
+
+  if (typeof index === "number" && index != -1) {
+    const value = weatherdata?.hourly.apparent_temperature[index];
+    feels_like = value !== undefined ? Math.round(value) : null;
   }
+
+  console.log(feels_like);
 
   return (
     <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-24">
