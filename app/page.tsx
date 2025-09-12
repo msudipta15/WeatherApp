@@ -9,12 +9,14 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [city, setcity] = useState("kolkata");
-  const [weather, setweather] = useState(null);
-  const [country, setcountry] = useState(null);
+  const [weatherdata, setweatherdata] = useState(Object || null);
+  const [country, setcountry] = useState("India");
+  const [error, seterror] = useState<string | null>(null);
 
   async function getinfo() {
     console.log(city);
     try {
+      seterror(null);
       const response = await getweatherdata({
         city,
         units: {
@@ -26,15 +28,19 @@ export default function Home() {
 
       console.log(response);
       setcountry(response.country);
-      setweather(response.weather_data);
+      setweatherdata(response.weather_data);
     } catch (error) {
       console.log(error);
+      seterror("Server error");
     }
   }
 
   useEffect(() => {
     getinfo();
   }, []);
+
+  const date = weatherdata.current_weather.time || "";
+  const current_temp = weatherdata.current_weather.temperature || "";
 
   return (
     <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-24">
@@ -73,10 +79,10 @@ export default function Home() {
         <div className="sm:flex sm:gap-6 sm:items-stretch sm:h-[1000px] ">
           <div className="sm:w-[1000px] ">
             <HeroCard
-              city="Kolkata"
-              country="India"
-              temperature={43}
-              date="27/09/2025"
+              city={city}
+              country={country}
+              temperature={current_temp}
+              date={date}
               unit="C"
             />
             <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
