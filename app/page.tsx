@@ -7,9 +7,25 @@ import { WeatherCard } from "@/components/weathercards";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+type WeatherData = {
+  current_weather: {
+    temperature: number;
+    time: string;
+  };
+  hourly: {
+    time: string[];
+    apparent_temperature: number[];
+  };
+  daily: {
+    temperature_2m_max: number[];
+    temperature_2m_min: number[];
+    time: string[];
+  };
+};
+
 export default function Home() {
   const [city, setcity] = useState("kolkata");
-  const [weatherdata, setweatherdata] = useState(null);
+  const [weatherdata, setweatherdata] = useState<WeatherData | null>(null);
   const [country, setcountry] = useState("India");
   const [error, seterror] = useState<string | null>(null);
   const [loading, setloading] = useState(false);
@@ -49,7 +65,7 @@ export default function Home() {
     getinfo();
   }, []);
 
-  const dateString = weatherdata.current_weather.time || "";
+  const dateString = weatherdata?.current_weather.time || "";
   const date = new Date(dateString);
   const formatted_date = date.toLocaleDateString("en-US", {
     weekday: "long",
@@ -57,13 +73,14 @@ export default function Home() {
     year: "numeric",
     day: "numeric",
   });
-  const current_temp = weatherdata.current_weather.temperature || "";
-  const current_time = weatherdata.current_weather.time || "";
+  const current_temp = weatherdata?.current_weather.temperature || "";
+  const current_time = weatherdata?.current_weather.time || "";
   let feels_like = null;
-  const index = weatherdata.hourly.time.indexOf(current_time) || "";
+  const index = weatherdata?.hourly.time.indexOf(current_time) || "";
+  console.log(index);
 
-  if (index !== -1) {
-    feels_like = weatherdata.hourly.apparent_temperature[index] || "";
+  if (typeof index === "number" && index !== -1) {
+    feels_like = weatherdata?.hourly.apparent_temperature[index] || "";
   }
 
   return (
