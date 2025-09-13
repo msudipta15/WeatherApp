@@ -81,13 +81,10 @@ export default function Home() {
   current_temp = current_temp_float ? Math.round(current_temp_float) : null;
 
   const current_date = weatherdata?.current_weather.time || "";
-  console.log(current_date);
   const normalized_date = normalizeToHour(current_date);
   const index = weatherdata?.hourly.time.findIndex(
     (t: string) => normalizeToHour(t).getTime() === normalized_date.getTime()
   );
-
-  console.log(index);
 
   let feels_like = null;
 
@@ -95,8 +92,6 @@ export default function Home() {
     const value = weatherdata?.hourly.apparent_temperature[index];
     feels_like = value !== undefined ? Math.round(value) : null;
   }
-
-  console.log(feels_like);
 
   return (
     <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-24">
