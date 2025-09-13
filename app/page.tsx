@@ -25,6 +25,7 @@ type WeatherData = {
   daily: {
     temperature_2m_max: number[];
     temperature_2m_min: number[];
+    weathercode: number[];
     time: string[];
   };
 };
@@ -113,7 +114,11 @@ export default function Home() {
     percipitation = weatherdata?.hourly.precipitation[index] || null;
   }
 
-  // Find current humidity
+  // Find daily data
+  const daytime = weatherdata?.daily.time || [];
+  const max_temp = weatherdata?.daily.temperature_2m_max || [];
+  const min_temp = weatherdata?.daily.temperature_2m_min || [];
+  const weathercode = weatherdata?.daily.weathercode || [];
 
   return (
     <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-24">
