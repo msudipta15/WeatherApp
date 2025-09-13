@@ -151,17 +151,17 @@ export default function Home() {
               country={country}
               temperature={current_temp}
               date={formatted_date}
-              unit="C"
+              unit={tempunit === "celsius" ? "C" : "F"}
             />
             <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
               <WeatherCard
                 title={"Feels like"}
                 value={feels_like}
-                suffix={"°"}
+                suffix={tempunit}
               />
-              <WeatherCard title={"Humidity"} value={"46"} />
+              <WeatherCard title={"Humidity"} value={humidty_value} />
               <WeatherCard title={"Wind"} value={"9 mph"} />
-              <WeatherCard title={"Percipitation"} value={"0 in"} />
+              <WeatherCard title={"Percipitation"} value={percipitation} />
             </div>
             <div>
               <p className="text-xl sm:text-2xl">Daily Forecast</p>
