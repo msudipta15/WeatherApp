@@ -16,6 +16,8 @@ type WeatherData = {
   hourly: {
     time: string[];
     apparent_temperature: number[];
+    relative_humidity_2m: number[];
+    precipitation: number[];
   };
   daily: {
     temperature_2m_max: number[];
@@ -30,6 +32,11 @@ export default function Home() {
   const [country, setcountry] = useState("India");
   const [error, seterror] = useState<string | null>(null);
   const [loading, setloading] = useState(false);
+  const [tempunit, settempunit] = useState<"celsius" | "fahrenheit">("celsius");
+  const [windspeedunit, setwindspeedunit] = useState<"kmh" | "mph">("kmh");
+  const [percipitationunit, setpercipitationunit] = useState<"mm" | "inch">(
+    "mm"
+  );
 
   async function getinfo() {
     setloading(true);
@@ -39,9 +46,9 @@ export default function Home() {
       const response = await getweatherdata({
         city,
         units: {
-          temperature_unit: "celsius",
-          wind_speed_unit: "kmh",
-          precipitation_unit: "mm",
+          temperature_unit: tempunit,
+          wind_speed_unit: windspeedunit,
+          precipitation_unit: percipitationunit,
         },
       });
 
@@ -75,23 +82,33 @@ export default function Home() {
     day: "numeric",
   });
 
+  // Find current temp
   let current_temp = null;
   const current_temp_float = weatherdata?.current_weather.temperature || "";
-
   current_temp = current_temp_float ? Math.round(current_temp_float) : null;
 
+  // Find current feels , humidity , percipitation value
   const current_date = weatherdata?.current_weather.time || "";
   const normalized_date = normalizeToHour(current_date);
   const index = weatherdata?.hourly.time.findIndex(
     (t: string) => normalizeToHour(t).getTime() === normalized_date.getTime()
   );
-
   let feels_like = null;
+  let humidty_value = null;
+  let percipitation = null;
 
   if (typeof index === "number" && index != -1) {
-    const value = weatherdata?.hourly.apparent_temperature[index];
-    feels_like = value !== undefined ? Math.round(value) : null;
+    const current_feels_value = weatherdata?.hourly.apparent_temperature[index];
+    feels_like =
+      current_feels_value !== undefined
+        ? Math.round(current_feels_value)
+        : null;
+
+    humidty_value = weatherdata?.hourly.relative_humidity_2m[index];
+    percipitation = weatherdata?.hourly.precipitation[index];
   }
+
+  // Find current humidity
 
   return (
     <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-24">
