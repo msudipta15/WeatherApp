@@ -6,6 +6,7 @@ import { HeroCard } from "@/components/herocard";
 import { HourCard } from "@/components/hourcard";
 import { WeatherCard } from "@/components/weathercards";
 import { normalizeToHour } from "@/utils/dateutils";
+import { getdayname } from "@/utils/gatday";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -115,7 +116,7 @@ export default function Home() {
   }
 
   // Find daily data
-  const daytime = weatherdata?.daily.time || [];
+  const days = weatherdata?.daily.time || [];
   const max_temp = weatherdata?.daily.temperature_2m_max || [];
   const min_temp = weatherdata?.daily.temperature_2m_min || [];
   const weathercode = weatherdata?.daily.weathercode || [];
@@ -190,13 +191,15 @@ export default function Home() {
               <p className="text-xl sm:text-2xl">Daily Forecast</p>
             </div>
             <div className="pt-10 pb-16 grid grid-cols-3 md:grid-cols-7  gap-6">
-              <DayCard />
-              <DayCard />
-              <DayCard />
-              <DayCard />
-              <DayCard />
-              <DayCard />
-              <DayCard />
+              {days.map((d: string, index: number) => (
+                <DayCard
+                  key={index}
+                  day={getdayname(days[index])}
+                  max_temp={max_temp[index]}
+                  min_temp={min_temp[index]}
+                  icon={getweathericon(weathercode[index])}
+                />
+              ))}
             </div>
           </div>
           <div className=" flex-1 h-[860px] bg-[#25253f] p-6 rounded-2xl flex flex-col   ">
