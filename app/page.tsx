@@ -225,7 +225,12 @@ export default function Home() {
               <p className="text-2xl font-bold">Hourly forecast</p>
               <Select onValueChange={(v) => setselectdate(v)}>
                 <SelectTrigger className="sm:w-[150px]">
-                  <SelectValue placeholder={selectdate} />
+                  <SelectValue
+                    placeholder={new Date(selectdate).toLocaleDateString(
+                      "en-US",
+                      { weekday: "long" }
+                    )}
+                  />
                 </SelectTrigger>
                 <SelectContent>
                   {weatherdata?.daily.time.map((d: string) => {
