@@ -7,6 +7,7 @@ import { HourCard } from "@/components/hourcard";
 import { WeatherCard } from "@/components/weathercards";
 import { normalizeToHour } from "@/utils/dateutils";
 import { getdayname } from "@/utils/gatday";
+import { getHour } from "@/utils/gettime";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -22,6 +23,8 @@ type WeatherData = {
     apparent_temperature: number[];
     relative_humidity_2m: number[];
     precipitation: number[];
+    temperature_2m: number[];
+    weathercode: number[];
   };
   daily: {
     temperature_2m_max: number[];
@@ -121,6 +124,11 @@ export default function Home() {
   const min_temp = weatherdata?.daily.temperature_2m_min || [];
   const weathercode = weatherdata?.daily.weathercode || [];
 
+  // Find hour data
+  const hour = weatherdata?.hourly.time || [];
+  const hour_temp = weatherdata?.hourly.temperature_2m || [];
+  const hour_icon = weatherdata?.hourly.weathercode || [];
+
   return (
     <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-24">
       <nav className="py-6 px-2 md:p-8  flex justify-between">
@@ -210,15 +218,14 @@ export default function Home() {
               </select>
             </div>
             <div className="flex-1 overflow-y-auto">
-              <HourCard />
-              <HourCard />
-              <HourCard />
-              <HourCard />
-              <HourCard />
-              <HourCard />
-              <HourCard />
-              <HourCard />
-              <HourCard />
+              {hour.map((h: string, index: number) => (
+                <HourCard
+                  key={index}
+                  time={getHour(hour[index])}
+                  temp={hour_temp[index]}
+                  icon={getweathericon(hour_icon[index])}
+                />
+              ))}
             </div>
           </div>
         </div>

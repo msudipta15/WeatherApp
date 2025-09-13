@@ -1,10 +1,17 @@
-export function HourCard() {
+interface hourProps {
+  time: string;
+  temp: number;
+  icon: string;
+}
+
+export function HourCard({ time, temp, icon }: hourProps) {
   return (
-    <div className="flex justify-between p-6  text-xl my-5 rounded-lg bg-[#2f2f49]">
-      <div>
-        <p>3 PM</p>
+    <div className="flex justify-between py-6 px-4 items-center  text-xl my-5 rounded-lg bg-[#2f2f49]">
+      <div className="flex items-center gap-2">
+        <img src={icon} alt="" width={50} />
+        <p>{time}</p>
       </div>
-      <div>68 </div>
+      <div>{Math.round(temp)}</div>
     </div>
   );
 }
