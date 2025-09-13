@@ -12,6 +12,7 @@ type WeatherData = {
   current_weather: {
     temperature: number;
     time: string;
+    windspeed: number;
   };
   hourly: {
     time: string[];
@@ -82,10 +83,12 @@ export default function Home() {
     day: "numeric",
   });
 
-  // Find current temp
+  // Find current temp , windspeed
   let current_temp = null;
   const current_temp_float = weatherdata?.current_weather.temperature || "";
   current_temp = current_temp_float ? Math.round(current_temp_float) : null;
+
+  const windspeed = weatherdata?.current_weather.windspeed || "";
 
   // Find current feels , humidity , percipitation value
   const current_date = weatherdata?.current_weather.time || "";
@@ -157,11 +160,23 @@ export default function Home() {
               <WeatherCard
                 title={"Feels like"}
                 value={feels_like}
-                suffix={tempunit}
+                suffix={"°"}
               />
-              <WeatherCard title={"Humidity"} value={humidty_value} />
-              <WeatherCard title={"Wind"} value={"9 mph"} />
-              <WeatherCard title={"Percipitation"} value={percipitation} />
+              <WeatherCard
+                title={"Humidity"}
+                value={humidty_value}
+                suffix={"%"}
+              />
+              <WeatherCard
+                title={"Wind"}
+                value={windspeed}
+                suffix={windspeedunit === "kmh" ? "km/h" : "m/h"}
+              />
+              <WeatherCard
+                title={"Percipitation"}
+                value={percipitation}
+                suffix={percipitationunit}
+              />
             </div>
             <div>
               <p className="text-xl sm:text-2xl">Daily Forecast</p>
