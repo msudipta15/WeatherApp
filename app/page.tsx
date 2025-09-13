@@ -10,6 +10,13 @@ import { getdayname } from "@/utils/gatday";
 import { getHour } from "@/utils/gettime";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type WeatherData = {
   current_weather: {
@@ -42,9 +49,12 @@ export default function Home() {
   const [loading, setloading] = useState(false);
   const [tempunit, settempunit] = useState<"celsius" | "fahrenheit">("celsius");
   const [windspeedunit, setwindspeedunit] = useState<"kmh" | "mph">("kmh");
+
   const [percipitationunit, setpercipitationunit] = useState<"mm" | "inch">(
     "mm"
   );
+  const today = new Date().toISOString().split("T")[0];
+  const [selectdate, setselectdate] = useState<string>(today);
 
   async function getinfo() {
     setloading(true);
@@ -130,7 +140,7 @@ export default function Home() {
   const hour_icon = weatherdata?.hourly.weathercode || [];
 
   return (
-    <div className="bg-[#02012b] w-full min-h-screen px-8 sm:px-24">
+    <div className="bg-[#02012b] text-white w-full min-h-screen px-8 sm:px-24">
       <nav className="py-6 px-2 md:p-8  flex justify-between">
         <div>
           <Image
@@ -157,7 +167,7 @@ export default function Home() {
         />
         <button
           onClick={() => getinfo()}
-          className="px-7 py-3  bg-blue-500 rounded-3xl cursor-pointer hover:bg-blue-600"
+          className="px-7 py-3 font-bold text-lg  bg-blue-500 rounded-xl cursor-pointer hover:bg-blue-600"
         >
           Search
         </button>
@@ -213,19 +223,43 @@ export default function Home() {
           <div className=" flex-1 h-[860px] bg-[#25253f] p-6 rounded-2xl flex flex-col   ">
             <div className="flex justify-between mb-6">
               <p className="text-2xl font-bold">Hourly forecast</p>
-              <select name="day" id="">
-                day
-              </select>
+              <Select onValueChange={(v) => setselectdate(v)}>
+                <SelectTrigger className="sm:w-[150px]">
+                  <SelectValue placeholder={selectdate} />
+                </SelectTrigger>
+                <SelectContent>
+                  {weatherdata?.daily.time.map((d: string) => {
+                    const day = new Date(d);
+                    const formatted = day.toLocaleDateString("en-US", {
+                      weekday: "long",
+                    });
+
+                    return (
+                      <SelectItem key={d} value={d}>
+                        {formatted}
+                      </SelectItem>
+                    );
+                  })}
+                </SelectContent>
+              </Select>
             </div>
             <div className="flex-1 overflow-y-auto">
-              {hour.map((h: string, index: number) => (
-                <HourCard
-                  key={index}
-                  time={getHour(hour[index])}
-                  temp={hour_temp[index]}
-                  icon={getweathericon(hour_icon[index])}
-                />
-              ))}
+              {hour.map((h: string, index: number) => {
+                const hdate = new Date(h).toISOString().split("T")[0];
+
+                if (hdate === selectdate) {
+                  return (
+                    <HourCard
+                      key={index}
+                      time={getHour(hour[index])}
+                      temp={hour_temp[index]}
+                      icon={getweathericon(hour_icon[index])}
+                    />
+                  );
+                }
+
+                return null;
+              })}
             </div>
           </div>
         </div>
