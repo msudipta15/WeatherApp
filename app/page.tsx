@@ -1,5 +1,6 @@
 "use client";
 import { getweatherdata } from "@/actions/getweatherdata";
+import { getweathericon } from "@/actions/getweathericon";
 import { DayCard } from "@/components/daycards";
 import { HeroCard } from "@/components/herocard";
 import { HourCard } from "@/components/hourcard";
@@ -13,6 +14,7 @@ type WeatherData = {
     temperature: number;
     time: string;
     windspeed: number;
+    weathercode: number;
   };
   hourly: {
     time: string[];
@@ -87,7 +89,7 @@ export default function Home() {
   let current_temp = null;
   const current_temp_float = weatherdata?.current_weather.temperature || "";
   current_temp = current_temp_float ? Math.round(current_temp_float) : null;
-
+  const current_icon = weatherdata?.current_weather.weathercode || null;
   const windspeed = weatherdata?.current_weather.windspeed || "";
 
   // Find current feels , humidity , percipitation value
@@ -107,8 +109,8 @@ export default function Home() {
         ? Math.round(current_feels_value)
         : null;
 
-    humidty_value = weatherdata?.hourly.relative_humidity_2m[index];
-    percipitation = weatherdata?.hourly.precipitation[index];
+    humidty_value = weatherdata?.hourly.relative_humidity_2m[index] || null;
+    percipitation = weatherdata?.hourly.precipitation[index] || null;
   }
 
   // Find current humidity
@@ -155,6 +157,7 @@ export default function Home() {
               temperature={current_temp}
               date={formatted_date}
               unit={tempunit === "celsius" ? "C" : "F"}
+              icon={getweathericon(current_icon!)}
             />
             <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
               <WeatherCard

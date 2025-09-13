@@ -4,9 +4,17 @@ interface proptype {
   date: string;
   temperature: number | string | null;
   unit: string;
+  icon: string;
 }
 
-export function HeroCard({ city, country, date, temperature, unit }: proptype) {
+export function HeroCard({
+  city,
+  country,
+  date,
+  temperature,
+  unit,
+  icon,
+}: proptype) {
   return (
     <div className="relative ">
       <img
@@ -29,7 +37,7 @@ export function HeroCard({ city, country, date, temperature, unit }: proptype) {
           <p className="text-center sm:text-start">{date}</p>
         </span>
         <span className="flex items-center pr-10 sm:pr-0">
-          <img src="icon-sunny.webp" alt="sunny" width={130} />
+          <img src={icon} alt="sunny" width={130} />
           <h1 className="text-8xl italic">
             {temperature}°{unit}
           </h1>
