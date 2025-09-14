@@ -43,6 +43,7 @@ type WeatherData = {
 
 export default function Home() {
   const [city, setcity] = useState("kolkata");
+  const [cityname, setcityname] = useState("Calcutta");
   const [weatherdata, setweatherdata] = useState<WeatherData | null>(null);
   const [country, setcountry] = useState("India");
   const [error, seterror] = useState<string | null>(null);
@@ -58,7 +59,6 @@ export default function Home() {
 
   async function getinfo() {
     setloading(true);
-    console.log(city);
     try {
       seterror(null);
       const response = await getweatherdata({
@@ -76,6 +76,7 @@ export default function Home() {
       }
 
       console.log(response);
+      setcityname(response.name);
       setcountry(response.country);
       setweatherdata(response.weather_data);
     } catch (error) {
@@ -175,7 +176,7 @@ export default function Home() {
         <div className="sm:flex sm:gap-6 sm:items-stretch sm:h-[1000px] ">
           <div className="sm:w-[1000px] ">
             <HeroCard
-              city={city}
+              city={cityname}
               country={country}
               temperature={current_temp}
               date={formatted_date}
