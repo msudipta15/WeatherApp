@@ -72,6 +72,9 @@ export default function Home() {
 
       if (response.error) {
         seterror(response.message);
+        console.log(response.message);
+        console.log(error);
+
         return;
       }
 
@@ -172,110 +175,116 @@ export default function Home() {
           Search
         </button>
       </div>
-      <div className="py-6 px-2 sm:p-8">
-        <div className="sm:flex sm:gap-6 sm:items-stretch sm:h-[1000px] ">
-          <div className="sm:w-[1000px] ">
-            <HeroCard
-              city={cityname}
-              country={country}
-              temperature={current_temp}
-              date={formatted_date}
-              unit={tempunit === "celsius" ? "C" : "F"}
-              icon={getweathericon(current_icon!)}
-              isLoading={loading}
-            />
-            <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
-              <WeatherCard
-                title={"Feels like"}
-                value={feels_like}
-                suffix={"°"}
+      {error ? (
+        <div>
+          <h1 className="text-center text-3xl mt-10">{error}</h1>
+        </div>
+      ) : (
+        <div className="py-6 px-2 sm:p-8">
+          <div className="sm:flex sm:gap-6 sm:items-stretch sm:h-[1000px] ">
+            <div className="sm:w-[1000px] ">
+              <HeroCard
+                city={cityname}
+                country={country}
+                temperature={current_temp}
+                date={formatted_date}
+                unit={tempunit === "celsius" ? "C" : "F"}
+                icon={getweathericon(current_icon!)}
                 isLoading={loading}
               />
-              <WeatherCard
-                title={"Humidity"}
-                value={humidty_value}
-                suffix={"%"}
-                isLoading={loading}
-              />
-              <WeatherCard
-                title={"Wind"}
-                value={windspeed}
-                suffix={windspeedunit === "kmh" ? "km/h" : "m/h"}
-                isLoading={loading}
-              />
-              <WeatherCard
-                title={"Percipitation"}
-                value={percipitation}
-                suffix={percipitationunit}
-                isLoading={loading}
-              />
-            </div>
-            <div>
-              <p className="text-xl sm:text-2xl">Daily Forecast</p>
-            </div>
-            <div className="pt-10 pb-16 grid grid-cols-3 md:grid-cols-7  gap-6">
-              {days.map((d: string, index: number) => (
-                <DayCard
-                  key={index}
-                  day={getdayname(days[index])}
-                  max_temp={max_temp[index]}
-                  min_temp={min_temp[index]}
-                  icon={getweathericon(weathercode[index])}
+              <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
+                <WeatherCard
+                  title={"Feels like"}
+                  value={feels_like}
+                  suffix={"°"}
                   isLoading={loading}
                 />
-              ))}
-            </div>
-          </div>
-          <div className=" flex-1 h-[860px] bg-[#25253f] p-6 rounded-2xl flex flex-col   ">
-            <div className="flex justify-between mb-6">
-              <p className="text-2xl font-bold">Hourly forecast</p>
-              <Select onValueChange={(v) => setselectdate(v)}>
-                <SelectTrigger className="sm:w-[150px]">
-                  <SelectValue
-                    placeholder={new Date(selectdate).toLocaleDateString(
-                      "en-US",
-                      { weekday: "long" }
-                    )}
+                <WeatherCard
+                  title={"Humidity"}
+                  value={humidty_value}
+                  suffix={"%"}
+                  isLoading={loading}
+                />
+                <WeatherCard
+                  title={"Wind"}
+                  value={windspeed}
+                  suffix={windspeedunit === "kmh" ? "km/h" : "m/h"}
+                  isLoading={loading}
+                />
+                <WeatherCard
+                  title={"Percipitation"}
+                  value={percipitation}
+                  suffix={percipitationunit}
+                  isLoading={loading}
+                />
+              </div>
+              <div>
+                <p className="text-xl sm:text-2xl">Daily Forecast</p>
+              </div>
+              <div className="pt-10 pb-16 grid grid-cols-3 md:grid-cols-7  gap-6">
+                {days.map((d: string, index: number) => (
+                  <DayCard
+                    key={index}
+                    day={getdayname(days[index])}
+                    max_temp={max_temp[index]}
+                    min_temp={min_temp[index]}
+                    icon={getweathericon(weathercode[index])}
+                    isLoading={loading}
                   />
-                </SelectTrigger>
-                <SelectContent>
-                  {weatherdata?.daily.time.map((d: string) => {
-                    const day = new Date(d);
-                    const formatted = day.toLocaleDateString("en-US", {
-                      weekday: "long",
-                    });
-
-                    return (
-                      <SelectItem key={d} value={d}>
-                        {formatted}
-                      </SelectItem>
-                    );
-                  })}
-                </SelectContent>
-              </Select>
+                ))}
+              </div>
             </div>
-            <div className="flex-1 overflow-y-auto">
-              {hour.map((h: string, index: number) => {
-                const hdate = new Date(h).toISOString().split("T")[0];
-
-                if (hdate === selectdate) {
-                  return (
-                    <HourCard
-                      key={index}
-                      time={getHour(hour[index])}
-                      temp={hour_temp[index]}
-                      icon={getweathericon(hour_icon[index])}
-                      isLoading={loading}
+            <div className=" flex-1 h-[860px] bg-[#25253f] p-6 rounded-2xl flex flex-col   ">
+              <div className="flex justify-between mb-6">
+                <p className="text-2xl font-bold">Hourly forecast</p>
+                <Select onValueChange={(v) => setselectdate(v)}>
+                  <SelectTrigger className="sm:w-[150px]">
+                    <SelectValue
+                      placeholder={new Date(selectdate).toLocaleDateString(
+                        "en-US",
+                        { weekday: "long" }
+                      )}
                     />
-                  );
-                }
+                  </SelectTrigger>
+                  <SelectContent>
+                    {weatherdata?.daily.time.map((d: string) => {
+                      const day = new Date(d);
+                      const formatted = day.toLocaleDateString("en-US", {
+                        weekday: "long",
+                      });
 
-                return null;
-              })}
+                      return (
+                        <SelectItem key={d} value={d}>
+                          {formatted}
+                        </SelectItem>
+                      );
+                    })}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="flex-1 overflow-y-auto">
+                {hour.map((h: string, index: number) => {
+                  const hdate = new Date(h).toISOString().split("T")[0];
+
+                  if (hdate === selectdate) {
+                    return (
+                      <HourCard
+                        key={index}
+                        time={getHour(hour[index])}
+                        temp={hour_temp[index]}
+                        icon={getweathericon(hour_icon[index])}
+                        isLoading={loading}
+                      />
+                    );
+                  }
+
+                  return null;
+                })}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
