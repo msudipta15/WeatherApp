@@ -2,10 +2,12 @@ export function WeatherCard({
   title,
   value,
   suffix,
+  isLoading,
 }: {
   title: string;
   value: number | string | null;
   suffix?: string | null;
+  isLoading: boolean;
 }) {
   return (
     <div className=" h-[150px] rounded-2xl bg-[#25253f] px-6 py-4 ">

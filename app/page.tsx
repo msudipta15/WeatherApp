@@ -10,7 +10,6 @@ import { getdayname } from "@/utils/gatday";
 import { getHour } from "@/utils/gettime";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FaAngleDown } from "react-icons/fa6";
 import {
   Select,
   SelectContent,
@@ -18,13 +17,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import { IoSettingsOutline } from "react-icons/io5";
 
 type WeatherData = {
   current_weather: {
@@ -189,27 +181,32 @@ export default function Home() {
               date={formatted_date}
               unit={tempunit === "celsius" ? "C" : "F"}
               icon={getweathericon(current_icon!)}
+              isLoading={loading}
             />
             <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
               <WeatherCard
                 title={"Feels like"}
                 value={feels_like}
                 suffix={"°"}
+                isLoading={loading}
               />
               <WeatherCard
                 title={"Humidity"}
                 value={humidty_value}
                 suffix={"%"}
+                isLoading={loading}
               />
               <WeatherCard
                 title={"Wind"}
                 value={windspeed}
                 suffix={windspeedunit === "kmh" ? "km/h" : "m/h"}
+                isLoading={loading}
               />
               <WeatherCard
                 title={"Percipitation"}
                 value={percipitation}
                 suffix={percipitationunit}
+                isLoading={loading}
               />
             </div>
             <div>
@@ -223,6 +220,7 @@ export default function Home() {
                   max_temp={max_temp[index]}
                   min_temp={min_temp[index]}
                   icon={getweathericon(weathercode[index])}
+                  isLoading={loading}
                 />
               ))}
             </div>
@@ -266,6 +264,7 @@ export default function Home() {
                       time={getHour(hour[index])}
                       temp={hour_temp[index]}
                       icon={getweathericon(hour_icon[index])}
+                      isLoading={loading}
                     />
                   );
                 }

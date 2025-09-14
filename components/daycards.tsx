@@ -3,9 +3,16 @@ interface dayProps {
   max_temp: number;
   min_temp: number;
   icon: string;
+  isLoading: boolean;
 }
 
-export function DayCard({ day, max_temp, min_temp, icon }: dayProps) {
+export function DayCard({
+  day,
+  max_temp,
+  min_temp,
+  icon,
+  isLoading,
+}: dayProps) {
   return (
     <div className=" w-[120px] h-[200px] rounded-2xl bg-[#25253f] px-6 py-4 flex flex-col justify-between  ">
       <div>
