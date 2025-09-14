@@ -136,8 +136,6 @@ export default function Home() {
       percipitation_value !== undefined ? percipitation_value : null;
   }
 
-  console.log(feels_like, percipitation, humidty_value);
-
   // Find daily data
   const days = weatherdata?.daily.time || [];
   const max_temp = weatherdata?.daily.temperature_2m_max || [];
@@ -150,7 +148,7 @@ export default function Home() {
   const hour_icon = weatherdata?.hourly.weathercode || [];
 
   return (
-    <div className="bg-[#02012b] text-white w-full min-h-screen px-8 sm:px-24">
+    <div className="bg-[#02012b] text-white w-full min-h-screen px-4 sm:px-24">
       <nav className="py-6 px-2 md:p-8  flex justify-between">
         <div>
           <Image
