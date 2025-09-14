@@ -128,9 +128,15 @@ export default function Home() {
         ? Math.round(current_feels_value)
         : null;
 
-    humidty_value = weatherdata?.hourly.relative_humidity_2m[index] || null;
-    percipitation = weatherdata?.hourly.precipitation[index] || null;
+    humidty_value = weatherdata?.hourly.relative_humidity_2m[index];
+    const humidity = weatherdata?.hourly.relative_humidity_2m[index];
+    humidty_value = humidity !== undefined ? humidity : null;
+    const percipitation_value = weatherdata?.hourly.precipitation[index];
+    percipitation =
+      percipitation_value !== undefined ? percipitation_value : null;
   }
+
+  console.log(feels_like, percipitation, humidty_value);
 
   // Find daily data
   const days = weatherdata?.daily.time || [];
