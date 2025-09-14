@@ -14,7 +14,7 @@ export function DayCard({
   isLoading,
 }: dayProps) {
   return (
-    <div className=" w-[120px] h-[200px] rounded-2xl bg-[#25253f] px-6 py-4 flex flex-col justify-between  ">
+    <div className="  sm:w-[120px] sm:h-[200px] rounded-2xl bg-[#25253f] px-6 py-4 flex flex-col justify-between  ">
       <div>
         <p className="text-xl  text-center">{day}</p>
       </div>

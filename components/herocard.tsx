@@ -51,7 +51,7 @@ export function HeroCard({
             </span>
             <span className="flex items-center pr-10 sm:pr-0">
               <img src={icon} alt="sunny" width={100} />
-              <h1 className="text-5xl sm:text-8xl italic">
+              <h1 className="text-6xl sm:text-8xl italic">
                 {temperature}°{unit}
               </h1>
             </span>
