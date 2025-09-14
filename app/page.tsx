@@ -157,7 +157,7 @@ export default function Home() {
         </div>
       </nav>
       <div className="text-center py-6 px-2 sm:px-8">
-        <h1 className="text-7xl sm:text-6xl">
+        <h1 className="text-6xl sm:text-6xl">
           How&apos;s the sky looking today ?
         </h1>
       </div>
@@ -192,7 +192,7 @@ export default function Home() {
                 icon={getweathericon(current_icon!)}
                 isLoading={loading}
               />
-              <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-12 ">
+              <div className="pt-10 pb-6 sm:pb-10 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-5 sm:gap-12 ">
                 <WeatherCard
                   title={"Feels like"}
                   value={feels_like}

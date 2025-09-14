@@ -14,9 +14,9 @@ export function WeatherCard({
       <span>
         <p className="text-xl text-[#a3a3ac]">{title}</p>
         {isLoading ? (
-          <p className="text-4xl mt-8">-</p>
+          <p className="text-3xl sm:text-4xl mt-5 sm:mt-8">-</p>
         ) : (
-          <p className="text-4xl mt-8">
+          <p className="text-3xl sm:text-4xl mt-5 sm:mt-8">
             {value} {suffix}
           </p>
         )}
