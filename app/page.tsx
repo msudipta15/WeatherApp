@@ -10,15 +10,21 @@ import { getdayname } from "@/utils/gatday";
 import { getHour } from "@/utils/gettime";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { FaAngleDown } from "react-icons/fa6";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { IoSettingsOutline } from "react-icons/io5";
 
 type WeatherData = {
   current_weather: {
@@ -153,28 +159,6 @@ export default function Home() {
             className="w-40 h-auto sm:w-48 md:w-60"
           />
         </div>
-        <Select>
-          <SelectTrigger className="w-[100px]">
-            <SelectValue placeholder="Units" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Temperature</SelectLabel>
-              <SelectItem value="celsius">Celsius(°C)</SelectItem>
-              <SelectItem value="fahrenheit">Fahrenheit(°F)</SelectItem>
-            </SelectGroup>
-            <SelectGroup>
-              <SelectLabel>Wind Speed</SelectLabel>
-              <SelectItem value="kmh">km/h</SelectItem>
-              <SelectItem value="mph">mph</SelectItem>
-            </SelectGroup>
-            <SelectGroup>
-              <SelectLabel>Temperature</SelectLabel>
-              <SelectItem value="mm">Milimiters(mm)</SelectItem>
-              <SelectItem value="inch">Inches(in)</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
       </nav>
       <div className="text-center py-6 px-2 sm:px-8">
         <h1 className="text-7xl sm:text-6xl">
