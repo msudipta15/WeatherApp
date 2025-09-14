@@ -1,6 +1,5 @@
 "use client";
-import { motion } from "framer-motion"; // ✅ not "motion/react"
-import { easeInOut } from "framer-motion"; // ✅ ease is exported from here
+import { motion, easeInOut } from "framer-motion";
 
 export const LoaderOne = () => {
   const transition = (x: number) => {
@@ -9,7 +8,7 @@ export const LoaderOne = () => {
       repeat: Infinity,
       repeatType: "loop" as const,
       delay: x * 0.2,
-      ease: easeInOut, // ✅ function, not string
+      ease: easeInOut, // Correct: uses easing function
     };
   };
 
