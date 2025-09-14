@@ -13,9 +13,13 @@ export function WeatherCard({
     <div className=" h-[150px] rounded-2xl bg-[#25253f] px-6 py-4 ">
       <span>
         <p className="text-xl text-[#a3a3ac]">{title}</p>
-        <p className="text-4xl mt-8">
-          {value} {suffix}
-        </p>
+        {isLoading ? (
+          <p className="text-4xl mt-8">-</p>
+        ) : (
+          <p className="text-4xl mt-8">
+            {value} {suffix}
+          </p>
+        )}
       </span>
     </div>
   );
