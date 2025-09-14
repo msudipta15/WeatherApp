@@ -40,7 +40,6 @@ export function HeroCard({
             <span>
               <LoaderOne />
             </span>
-            <span className="text-center text-2xl font-medium">Loading...</span>
           </div>
         ) : (
           <div className="absolute inset-0 p-6 gap-4 sm:p-12 flex flex-col sm:flex-row  justify-center items-center sm:justify-between">
